@@ -1,98 +1,423 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- Basic Meta -->
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Shakotu's Restaurant | Delicious Food & Cozy Atmosphere</title>
-  <meta name="description" content="Welcome to Shakotu's Restaurant – serving delicious food with a cozy atmosphere. Reserve your table today!">
+  <title>Sharkotu's Restaurant</title>
+  <style>
+    :root {
+      --bg: #fdf2e9;
+      --card: #ffffff;
+      --accent: #d9480f;
+      --accent-dark: #b02a1a;
+      --text: #2d2d2d;
+      --muted: #6c6c6c;
+    }
 
-  <!-- Favicon -->
-  <link rel="icon" href="favicon.png" type="image/png">
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    body {
+      font-family: "Segoe UI", sans-serif;
+      line-height: 1.6;
+      color: var(--text);
+      background: radial-gradient(circle at top, #fff7ed 0%, #ffe5d0 55%, #f7ede5 100%);
+      scroll-behavior: smooth;
+    }
 
-  <!-- Stylesheet -->
-  <link rel="stylesheet" href="style.css">
+    header {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.5rem 2rem;
+      background: rgba(255, 255, 255, 0.92);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
 
-  <!-- Social Media Preview -->
-  <meta property="og:title" content="Shakotu's Restaurant">
-  <meta property="og:description" content="Delicious food, cozy atmosphere. Experience flavors that make you smile.">
-  <meta property="og:image" content="restaurant-preview.jpg">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://yourrestaurantwebsite.com">
+    header h1 {
+      font-size: 1.5rem;
+      letter-spacing: 0.02em;
+      color: var(--accent-dark);
+    }
 
-  <!-- Theme Color -->
-  <meta name="theme-color" content="#ff4d4d">
+    nav ul {
+      display: flex;
+      gap: 1rem;
+      list-style: none;
+      flex-wrap: wrap;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: var(--text);
+      font-weight: 600;
+      transition: color 0.2s ease;
+    }
+
+    nav a:hover {
+      color: var(--accent-dark);
+    }
+
+    .hero {
+      min-height: 70vh;
+      display: grid;
+      place-items: center;
+      text-align: center;
+      padding: 3rem 1.5rem;
+      background: url('https://images.unsplash.com/photo-1541544741938-0af808871cc8?auto=format&fit=crop&w=1200&q=80') center/cover no-repeat;
+      position: relative;
+      color: #fff;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.6));
+    }
+
+    .hero * {
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.2rem, 4vw, 3.8rem);
+      margin-bottom: 1rem;
+      text-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    }
+
+    .hero p {
+      font-size: 1.1rem;
+      max-width: 32rem;
+      margin: 0 auto 1.5rem;
+      color: #f8f1e7;
+    }
+
+    .btn,
+    button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--accent);
+      color: #fff;
+      border: none;
+      padding: 0.95rem 1.8rem;
+      border-radius: 999px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      cursor: pointer;
+      transition: transform 0.2s ease, background 0.2s ease;
+      font-weight: 700;
+    }
+
+    .btn:hover,
+    button:hover {
+      transform: translateY(-2px);
+      background: var(--accent-dark);
+    }
+
+    main {
+      padding: 3rem 1.5rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    section {
+      margin-bottom: 3rem;
+    }
+
+    section h2 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      color: var(--accent-dark);
+    }
+
+    .intro {
+      text-align: center;
+      max-width: 760px;
+      margin: 0 auto 2rem;
+      color: var(--muted);
+    }
+
+    .menu-grid {
+      display: grid;
+      gap: 1.5rem;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      margin-top: 1.5rem;
+    }
+
+    .menu-item {
+      padding: 1.75rem;
+      border-radius: 24px;
+      background: rgba(255, 255, 255, 0.92);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.6);
+    }
+
+    .menu-item h3 {
+      margin-bottom: 0.65rem;
+      color: var(--accent);
+    }
+
+    .menu-item p {
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    #about p,
+    #contact p {
+      max-width: 780px;
+      color: var(--muted);
+    }
+
+    form {
+      display: grid;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    input,
+    textarea {
+      width: 100%;
+      padding: 1rem 1.1rem;
+      border: 1px solid #e7d5c3;
+      border-radius: 16px;
+      font: inherit;
+    }
+
+    textarea {
+      min-height: 140px;
+      resize: vertical;
+    }
+
+    footer {
+      text-align: center;
+      padding: 1.25rem 1.5rem;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .menu-item.selected {
+      transform: translateY(-4px);
+      border-color: rgba(217, 72, 15, 0.4);
+      box-shadow: 0 18px 30px rgba(217, 72, 15, 0.18);
+    }
+
+    .nav-active {
+      color: var(--accent-dark);
+    }
+
+    .back-to-top {
+      position: fixed;
+      right: 1.5rem;
+      bottom: 1.5rem;
+      width: 3.4rem;
+      height: 3.4rem;
+      border-radius: 50%;
+      background: var(--accent);
+      color: #fff;
+      border: none;
+      box-shadow: 0 16px 32px rgba(0, 0, 0, 0.2);
+      display: grid;
+      place-items: center;
+      cursor: pointer;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(10px);
+      transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s;
+      z-index: 20;
+    }
+
+    .back-to-top.show {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+
+    .toast {
+      position: fixed;
+      left: 50%;
+      bottom: 2.2rem;
+      transform: translateX(-50%) translateY(20px);
+      background: rgba(45, 45, 45, 0.94);
+      color: #fff;
+      padding: 0.95rem 1.4rem;
+      border-radius: 999px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.25s ease, transform 0.25s ease;
+      font-size: 0.95rem;
+      z-index: 30;
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    @media (max-width: 700px) {
+      header {
+        padding: 1rem;
+      }
+
+      nav ul {
+        justify-content: center;
+      }
+
+      .hero {
+        padding: 2.5rem 1rem;
+      }
+
+      main {
+        padding: 2rem 1rem;
+      }
+    }
+  </style>
 </head>
 <body>
-  <!-- Header -->
   <header>
-    <div class="logo">🍴 Shakotu's Restaurant</div>
+    <h1>Sharkotu's Restaurant</h1>
     <nav>
       <ul>
         <li><a href="#home">Home</a></li>
         <li><a href="#menu">Menu</a></li>
-        <li><a href="#about">About</a></li>
+        <li><a href="#about">About Us</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
     </nav>
   </header>
 
-  <!-- Hero Section -->
-  <section id="home" class="hero">
-    <div class="hero-text">
-      <h1>Delicious Food, Cozy Atmosphere</h1>
-      <p>Experience flavors that make you smile.</p>
-      <button onclick="showAlert()">Reserve a Table</button>
-    </div>
-  </section>
-
-  <!-- Menu Section -->
-  <section id="menu">
-    <h2>Our Specialties</h2>
-    <div class="menu-grid">
-      <div class="menu-card">
-        <img src="pizza.jpg" alt="Pizza">
-        <h3>Pizza</h3>
-        <p>Cheesy and fresh from the oven.</p>
+  <main>
+    <section id="home" class="hero">
+      <div>
+        <h1>Welcome to Sharkotu’s Restaurant</h1>
+        <p>Delicious food, cozy atmosphere, and great service.</p>
+        <a href="#menu" class="btn">View Menu</a>
       </div>
-      <div class="menu-card">
-        <img src="pasta.jpg" alt="Pasta">
-        <h3>Pasta</h3>
-        <p>Authentic Italian flavors.</p>
+    </section>
+
+    <section class="intro">
+      <h2>Delicious Food, Cozy Atmosphere</h2>
+      <p>Book a table today and enjoy freshly made dishes crafted with passion.</p>
+      <button onclick="showAlert()">Book a Table</button>
+    </section>
+
+    <section id="menu">
+      <h2>Our Menu</h2>
+      <div class="menu-grid">
+        <div class="menu-item">
+          <h3>Pizza 🍕</h3>
+          <p>Cheesy and fresh from the oven.</p>
+        </div>
+        <div class="menu-item">
+          <h3>Pasta 🍝</h3>
+          <p>Authentic Italian flavors.</p>
+        </div>
+        <div class="menu-item">
+          <h3>Biryani 🍲</h3>
+          <p>Spiced to perfection.</p>
+        </div>
       </div>
-      <div class="menu-card">
-        <img src="biryani.jpg" alt="Biryani">
-        <h3>Biryani</h3>
-        <p>Spiced to perfection.</p>
-      </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- About Section -->
-  <section id="about">
-    <h2>About Us</h2>
-    <p>We are passionate about serving fresh, tasty food with love. Our chefs bring authentic recipes to life, creating unforgettable dining experiences.</p>
-  </section>
+    <section id="about">
+      <h2>About Us</h2>
+      <p>We are passionate about serving fresh, tasty food with love. Come dine with us!</p>
+    </section>
 
-  <!-- Contact Section -->
-  <section id="contact">
-    <h2>Contact Us</h2>
-    <form>
-      <input type="text" placeholder="Your Name" required><br>
-      <input type="email" placeholder="Your Email" required><br>
-      <textarea placeholder="Type your thoughts here..."></textarea><br>
-      <button type="submit">Send</button>
-    </form>
-  </section>
+    <section id="contact">
+      <h2>Contact Us</h2>
+      <form onsubmit="event.preventDefault(); showAlert('Thanks for your message!');">
+        <input type="text" placeholder="Your Name" required>
+        <input type="email" placeholder="Your Email" required>
+        <textarea placeholder="Your Message"></textarea>
+        <button type="submit">Send</button>
+      </form>
+    </section>
+  </main>
 
-  <!-- Footer -->
   <footer>
-    <p>&copy; 2026 Shakotu's Restaurant | Designed with ❤️</p>
+    <p>&copy; <span id="year">2026</span> Sharkotu's Restaurant. All rights reserved.</p>
   </footer>
 
-  <script src="script.js"></script>
+  <button class="back-to-top" aria-label="Back to top" type="button">↑</button>
+  <div class="toast" role="status" aria-live="polite"></div>
+
+  <script>
+    const navLinks = document.querySelectorAll('nav a');
+    const sections = document.querySelectorAll('main section[id]');
+    const backToTop = document.querySelector('.back-to-top');
+    const toast = document.querySelector('.toast');
+
+    function showAlert(message = 'Thanks for choosing Sharkotu! We will reach out soon.') {
+      if (toast) {
+        toast.textContent = message;
+        toast.classList.add('show');
+        setTimeout(() => toast.classList.remove('show'), 2200);
+        return;
+      }
+      alert(message);
+    }
+
+    function updateActiveNav() {
+      const currentPosition = window.scrollY + 120;
+
+      sections.forEach(section => {
+        const top = section.offsetTop;
+        const height = section.offsetHeight;
+        const link = document.querySelector(`nav a[href="#${section.id}"]`);
+
+        if (currentPosition >= top && currentPosition < top + height) {
+          link?.classList.add('nav-active');
+        } else {
+          link?.classList.remove('nav-active');
+        }
+      });
+    }
+
+    function toggleBackToTop() {
+      if (window.scrollY > 400) {
+        backToTop.classList.add('show');
+      } else {
+        backToTop.classList.remove('show');
+      }
+    }
+
+    function initMenuInteraction() {
+      document.querySelectorAll('.menu-item').forEach(item => {
+        item.addEventListener('click', () => {
+          item.classList.toggle('selected');
+          showAlert(`${item.querySelector('h3').textContent} added to favorites!`);
+        });
+      });
+    }
+
+    function initFooterYear() {
+      const yearEl = document.getElementById('year');
+      if (yearEl) {
+        yearEl.textContent = new Date().getFullYear();
+      }
+    }
+
+    window.addEventListener('scroll', () => {
+      updateActiveNav();
+      toggleBackToTop();
+    });
+
+    backToTop.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    initMenuInteraction();
+    initFooterYear();
+  </script>
 </body>
 </html>
