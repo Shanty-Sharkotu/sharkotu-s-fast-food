@@ -357,7 +357,7 @@
     const backToTop = document.querySelector('.back-to-top');
     const toast = document.querySelector('.toast');
 
-    function showAlert(message = 'Thanks for choosing Sharkotu! We will reach out soon.') {
+    function showAlert(message = 'Thanks for choosing Sharkotu's Restraunt! Hang there..... We will reach out soon.') {
       if (toast) {
         toast.textContent = message;
         toast.classList.add('show');
@@ -395,7 +395,7 @@
       document.querySelectorAll('.menu-item').forEach(item => {
         item.addEventListener('click', () => {
           item.classList.toggle('selected');
-          showAlert(`${item.querySelector('h3').textContent} added to favorites!`);
+          showAlert(`${item.querySelector('h3').textContent} Added to eat anything esle!`);
         });
       });
     }
